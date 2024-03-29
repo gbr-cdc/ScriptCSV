@@ -1,23 +1,7 @@
 import csv
 import re
 
-def separar_elementos(nome):
-    # Inicializa a lista para armazenar os elementos separados
-    elementos_separados = []
-    
-    # Divide a string usando o espaço como separador
-    partes = nome.split(' ')
-    for parte in partes:
-        # Divide cada parte usando o hífen como separador
-        elementos_hifen = parte.split('-')
-        for elemento_hifen in elementos_hifen:
-            # Divide cada elemento usando a barra como separador
-            elementos_barra = elemento_hifen.split('/')
-            # Adiciona cada elemento separado à lista final
-            elementos_separados.extend(elementos_barra)
-    
-    return elementos_separados
-
+#Dicionario para recconhecer as cores
 cores_abreviacoes = {
     "vermelho": ["vermelho", "vermelha", "vmo", "vm", "verm", "vml"],
     "verde": ["verde", "vd", "vrd", "vde", "green"],
@@ -38,10 +22,14 @@ cores_abreviacoes = {
     "prata": ["prata", "prt", "pta"]
 }
 
-tamanhos = ['P', 'PP', 'M', 'G', 'GG']
-padrao = r'\b\d+(?:,\d+)?(?:ML|L)\b'
+#Possíveis adjetivos das cores
 adjetivos = ["fosco", "neon", "brilhante"]
+#Lista de tamanhos
+tamanhos = ['P', 'PP', 'M', 'G', 'GG']
+#Expressão regular
+padrao = r'\b\d+(?:,\d+)?(?:ML|L)\b'
 
+#Retorna a cor se identificar a palavra como 
 def is_cor(palavra):
     palavra = palavra.lower()
     for cor in cores_abreviacoes:
